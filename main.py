@@ -13,13 +13,20 @@ img = Image.open('input.jpg').convert('RGBA')
 width, height = img.size
 #print('original width, height: ', width, height) #debug output
 
-# creates the watermark as a new image, as if just overlaying one image with the other
+
+"""
+creates the watermark as a new image, as if just overlaying one image with the other. Options can be added later
+Options:
+01: Brazzers
+02: FakeTaxi
+03: BrattySis
+"""
 if (choice == 1):
-    #Brazzers watermark
     watermark = Image.open('watermarks/brazzers.png').convert('RGBA')
 elif (choice == 2):
-    #FakeTaxi watermark
     watermark = Image.open('watermarks/faketaxi.png').convert('RGBA')
+elif (choice == 3):
+    watermark = Image.open('watermarks/brattysis.png').convert('RGBA')
 watermark = watermark.resize((round(width/3.375), round(height/6))) ##resizes watermark to make it smaller and make it be in a 16:9 aspect ratio
 w, h = watermark.size
 
