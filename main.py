@@ -4,14 +4,15 @@
 from PIL import Image
 from PIL import ImageDraw
 from PIL import ImageFont
+import pyjs
 
 choice = 2
 # attempts to open the image from input.extension and converts to RGBA
-img = Image.open('input.jpg').convert('RGBA')
+img = Image.open("input.jpg").convert("RGBA")
 
 # outputs the size of the image
 width, height = img.size
-#print('original width, height: ', width, height) #debug output
+# print('original width, height: ', width, height) #debug output
 
 
 """
@@ -21,17 +22,21 @@ Options:
 02: FakeTaxi
 03: BrattySis
 """
-if (choice == 1):
-    watermark = Image.open('watermarks/brazzers.png').convert('RGBA')
-elif (choice == 2):
-    watermark = Image.open('watermarks/faketaxi.png').convert('RGBA')
-elif (choice == 3):
-    watermark = Image.open('watermarks/brattysis.png').convert('RGBA')
-watermark = watermark.resize((round(width/3.375), round(height/6))) ##resizes watermark to make it smaller and make it be in a 16:9 aspect ratio
+if choice == 1:
+    watermark = Image.open("watermarks/brazzers.png").convert("RGBA")
+elif choice == 2:
+    watermark = Image.open("watermarks/faketaxi.png").convert("RGBA")
+elif choice == 3:
+    watermark = Image.open("watermarks/brattysis.png").convert("RGBA")
+watermark = watermark.resize(
+    (round(width / 3.375), round(height / 6))
+)  ##resizes watermark to make it smaller and make it be in a 16:9 aspect ratio
 w, h = watermark.size
 
-#print('overlay width, height', w, h) #debug output
+# print('overlay width, height', w, h) #debug output
 
-img.paste(watermark, (width - w - round(width/50), height - h), watermark) #pasting the watermark onto the import image
-img.save('out.png')
-img.show() #debug output
+img.paste(
+    watermark, (width - w - round(width / 50), height - h), watermark
+)  # pasting the watermark onto the import image
+img.save("out.png")
+img.show()  # debug output
